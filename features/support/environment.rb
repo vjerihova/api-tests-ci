@@ -1,6 +1,6 @@
 class Environment
   def get_parameters(env_name)
-    env_name = "dev"
+    # env_name = "dev"
     flunk("Test environment not specified. Set PLATFORM env. variable before running tests.") if env_name.nil? or env_name.empty?
     env_name = env_name.upcase
     parameters = {}
