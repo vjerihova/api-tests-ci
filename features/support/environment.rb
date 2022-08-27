@@ -13,7 +13,7 @@ class Environment
     when 'DEV'
       parameters[:api_host] = "http://127.0.0.1:9000"
     when 'PRD'
-      parameters[:api_host] = "http://127.0.0.1:9000"
+      parameters[:api_host] = "http://127.0.0.1:9001"
     else
       #   nothing
     end
