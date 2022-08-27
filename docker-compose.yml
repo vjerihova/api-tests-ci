@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  hello-app:
+    image: hello-app
+    container_name: hello_app
+    ports:
+      - 9000:8080
+  ubuntu-ruby:
+    image: ubuntu_ruby
+    build: .
+    container_name: ubuntu_ruby
+    volumes:
+      - $PWD/test-output:/usr/src/api-tests/test-output
+    depends_on:
+      - hello-app

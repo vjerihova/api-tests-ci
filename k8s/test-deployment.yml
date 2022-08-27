@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-tests
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-tests
+  template:
+    metadata:
+      labels:
+        app: api-tests
+        visualize: "true"
+    spec:
+      containers:
+      - name: api-tests
+        image: mtararujs/ubuntu_ruby
+        ports:
+        - containerPort: 8080
