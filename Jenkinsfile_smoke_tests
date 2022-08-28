@@ -3,18 +3,20 @@ pipeline {
     triggers {
         pollSCM('*/15 * * * *')
     }
-
+    parameters {
+        string(name: "TAG", defaultValue: "@smoke", description: "Tag for test config")
+    }
     stages {
         stage('run-api-tests') {
             parallel {
                 stage ('run-api-tests-dev') {
                     steps {
-                        sh "docker run --rm --network=host --name api_dev_tests --entrypoint=cucumber vjerihova/ubuntu_ruby_executer:latest PLATFORM=DEV"
+                        sh "docker run --rm --network=host --name api_dev_tests --entrypoint=cucumber vjerihova/ubuntu_ruby_executer:latest PLATFORM=DEV --tags=${params.TAG}"
                     }
                 }
                 stage ('run-api-tests-prod') {
                     steps {
-                        sh "docker run --rm --network=host --name api_prd_tests --entrypoint=cucumber vjerihova/ubuntu_ruby_executer:latest PLATFORM=PRD"
+                        sh "docker run --rm --network=host --name api_prd_tests --entrypoint=cucumber vjerihova/ubuntu_ruby_executer:latest PLATFORM=PRD --tags=${params.TAG}"
                     }
                 }
             }
