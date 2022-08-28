@@ -9,12 +9,12 @@ pipeline {
             parallel {
                 stage ('run-api-tests-dev') {
                     steps {
-                        sh "docker run --rm --name api_dev_tests --entrypoint=cucumber vjerihova/ubuntu_ruby_executor:latest PLATFORM=DEV"
+                        sh "docker run --rm --name api_dev_tests --entrypoint=cucumber vjerihova/ubuntu_ruby_executer:latest PLATFORM=DEV"
                     }
                 }
                 stage ('run-api-tests-prod') {
                     steps {
-                        sh "docker run --rm --name api_prd_tests --entrypoint=cucumber vjerihova/ubuntu_ruby_executor:latest PLATFORM=PRD"
+                        sh "docker run --rm --name api_prd_tests --entrypoint=cucumber vjerihova/ubuntu_ruby_executer:latest PLATFORM=PRD"
                     }
                 }
             }
