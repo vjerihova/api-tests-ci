@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM('*/15 * * * *')
+    }
+
+    stages {
+        stage('run-api-tests') {
+            parallel {
+                stage ('run-api-tests-dev') {
+                    steps {
+                        sh "docker run --rm --name api_dev_tests --entrypoint=cucumber vjerihova/ubuntu_ruby_executor:latest PLATFORM=DEV"
+                    }
+                }
+                stage ('run-api-tests-prod') {
+                    steps {
+                        sh "docker run --rm --name api_prd_tests --entrypoint=cucumber vjerihova/ubuntu_ruby_executor:latest PLATFORM=PRD"
+                    }
+                }
+            }
+        }
+    }
+}
