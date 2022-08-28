@@ -1,5 +1,5 @@
-FROM mtararujs/ubuntu_ruby_base:latest
+FROM vjerihova/ubuntu_ruby_base:latest
 
-LABEL AUTHOR="Martins Tararujs"
+LABEL AUTHOR="Vera Jerihova"
 
 COPY features features
