@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM('*/1 * * * *')
+    }
+
+    stages {
+        stage('build-docker-base') {
+            steps {
+                sh "docker build -t vjerihova/ubuntu_ruby_executer:latest . -f Dockerfile_executer"
+            }
+        }
+    }
+}
