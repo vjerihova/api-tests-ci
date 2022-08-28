@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('build-docker-base') {
             steps {
-                sh -c "docker build -t vjerihova/ubuntu_ruby_base:latest . -f Dockerfile_base"
+                sh "docker build -t vjerihova/ubuntu_ruby_base:latest . -f Dockerfile_base"
             }
         }
     }
